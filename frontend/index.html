@@ -1,0 +1,240 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartRoute + ContextPilot</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="app">
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h2>SmartRoute<span>+</span></h2>
+            <p class="brand-subtitle">CONTEXT PILOT</p>
+
+            <nav>
+                <a href="#" class="active">Dashboard</a>
+                <a href="#optimizer">Smart Optimizer</a>
+                <a href="#local-ai">Local AI</a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <span class="status-dot"></span>
+                Local AI Project
+            </div>
+        </aside>
+
+        <!-- Main Dashboard -->
+        <main class="main">
+
+            <!-- Header -->
+            <header class="topbar">
+                <div>
+                    <p class="eyebrow">LLM EFFICIENCY PLATFORM</p>
+                    <h1>Dashboard</h1>
+                    <p class="subtitle">
+                        Optimize context, route tasks and reuse answers.
+                    </p>
+                </div>
+
+                <span class="status-badge">● Backend ready</span>
+            </header>
+
+            <!-- Overview Cards -->
+            <section class="stats">
+
+                <article class="stat-card">
+                    <p>PROJECT</p>
+                    <h2>SmartRoute</h2>
+                    <span>Intelligent model routing</span>
+                </article>
+
+                <article class="stat-card">
+                    <p>LOCAL MODELS</p>
+                    <h2>2</h2>
+                    <span>Qwen 2.5 · Llama 3.2</span>
+                </article>
+
+                <article class="stat-card">
+                    <p>CACHING</p>
+                    <h2>Enabled</h2>
+                    <span>Reuse repeated answers</span>
+                </article>
+
+            </section>
+
+            <!-- AI Workspace -->
+            <section class="workspace" id="local-ai">
+
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow">LOCAL INFERENCE</p>
+                        <h2>Ask your AI</h2>
+                    </div>
+
+                    <span class="local-label">Runs through Ollama</span>
+                </div>
+
+                <label for="task">Your task or question</label>
+
+                <textarea
+                    id="task"
+                    placeholder="Example: Explain how machine learning works..."
+                    rows="5"
+                ></textarea>
+
+                <button id="run-btn" type="button">
+                    Run SmartRoute
+                </button>
+
+                <p id="status" role="status">
+                    Enter a question to get started.
+                </p>
+
+                <!-- Results -->
+                <div id="result" class="result hidden">
+
+                    <!-- Generated Answer -->
+                    <div class="result-header">
+                        <div>
+                            <p class="eyebrow">AI RESPONSE</p>
+                            <h3>Generated Answer</h3>
+                        </div>
+
+                        <span id="cache-status"></span>
+                    </div>
+
+                    <div class="answer-overview">
+
+                        <div class="metrics">
+                            <div>
+                                <span>Selected model</span>
+                                <strong id="model"></strong>
+                            </div>
+
+                            <div>
+                                <span>Response time</span>
+                                <strong id="time"></strong>
+                            </div>
+                        </div>
+
+                        <div id="answer" class="answer"></div>
+
+                        <p id="validation-status"></p>
+
+                        <p id="routing-reason" class="routing-reason"></p>
+
+                    </div>
+
+                    <!-- ContextPilot Optimization -->
+                    <div id="optimization-result" class="optimization-result hidden">
+
+                        <div class="panel-heading">
+                            <p class="eyebrow">CONTEXT OPTIMIZATION</p>
+                            <h3>ContextPilot</h3>
+                            <p>Reducing unnecessary input tokens</p>
+                        </div>
+
+                        <div class="metrics">
+
+                            <div>
+                                <span>Original tokens</span>
+                                <strong id="original-tokens">—</strong>
+                            </div>
+
+                            <div>
+                                <span>Optimized tokens</span>
+                                <strong id="optimized-tokens">—</strong>
+                            </div>
+
+                            <div>
+                                <span>Tokens saved</span>
+                                <strong id="tokens-saved">—</strong>
+                            </div>
+
+                            <div>
+                                <span>Token savings</span>
+                                <strong id="savings-percentage">—</strong>
+                            </div>
+
+                        </div>
+
+                        <h4>Optimized Context</h4>
+
+                        <div id="optimized-text" class="answer"></div>
+
+                    </div>
+
+                    <!-- Benchmark Comparison -->
+                    <div id="benchmark-result" class="optimization-result">
+
+                        <div class="panel-heading">
+                            <p class="eyebrow">PERFORMANCE ANALYSIS</p>
+                            <h3>Original vs Optimized</h3>
+                            <p>Compare response performance and estimated cost</p>
+                        </div>
+
+                        <div class="metrics">
+
+                            <div>
+                                <span>Original response time</span>
+                                <strong id="benchmark-original-time">—</strong>
+                            </div>
+
+                            <div>
+                                <span>Optimized response time</span>
+                                <strong id="benchmark-optimized-time">—</strong>
+                            </div>
+
+                            <div>
+                                <span>Original estimated cost</span>
+                                <strong id="benchmark-original-cost">—</strong>
+                            </div>
+
+                            <div>
+                                <span>Optimized estimated cost</span>
+                                <strong id="benchmark-optimized-cost">—</strong>
+                            </div>
+
+                            <div>
+                                <span>Estimated cost change</span>
+                                <strong id="benchmark-cost-change">—</strong>
+                            </div>
+
+                            <div>
+                                <span>Original output tokens</span>
+                                <strong id="benchmark-original-tokens">—</strong>
+                            </div>
+
+                            <div>
+                                <span>Optimized output tokens</span>
+                                <strong id="benchmark-optimized-tokens">—</strong>
+                            </div>
+
+                        </div>
+
+                        <h4>Optimized Answer</h4>
+
+                        <div id="benchmark-optimized-answer" class="answer"></div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- Footer -->
+            <footer>
+                SmartRoute + ContextPilot · Local LLM optimization
+            </footer>
+
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
